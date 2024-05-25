@@ -1,16 +1,13 @@
-const express = require('express');
+var express = require('express');
+var cors = require('cors');
+var app = express();
 
-const app = express()
-const PORT = 8000
+const userRouter = require('./routes/user');
 
-app.get('/', (req, res) => {
-  res.send('Hello World')
-})
+app.use(cors())
+app.use(express.json())
+app.use('/api/user', userRouter);
 
-app.get('/about', (req, res) => {
-  res.send('About route 🎉 ')
-})
-
-app.listen(PORT, () => {
-  console.log(`✅ Server is running on port ${PORT}`);
+app.listen(5001, function () {
+  console.log('CORS-enabled web server listening on port 80')
 })
