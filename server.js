@@ -1,8 +1,13 @@
-const express = require("express");
-const app = express();
+var express = require('express');
+var cors = require('cors');
+var app = express();
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
+const userRouter = require('./routes/user');
 
-app.listen(5001, () => console.log("Server ready on port 3000."));
+app.use(cors())
+app.use(express.json())
+app.use('/api/user', userRouter);
 
-module.exports = app;
+app.listen(process.env.NODE_PORT, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
