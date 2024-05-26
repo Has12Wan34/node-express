@@ -7,6 +7,12 @@
       "config": { "includeFiles": ["dist/**"] }
     }
   ],
+  "rewrites": [
+    { 
+      "source": "/(.*)", 
+      "destination": "/server" 
+    }
+  ],
   "headers": {
     "Access-Control-Allow-Origin": "*",
     "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
