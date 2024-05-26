@@ -7,13 +7,8 @@ const userRouter = require('./routes/user');
 app.use(cors());
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Methods', "GET,OPTIONS,PATCH,DELETE,POST,PUT");
-  res.header('Access-Control-Allow-Headers', "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version");
-  res.header('Access-Control-Allow-Credentials', 'true');
-  if (req.method === 'OPTIONS') {
-    res.status(200).end();
-  return;
-  };
+  res.header('Access-Control-Allow-Methods', "GET,DELETE,POST,PUT");
+  res.header('Access-Control-Allow-Headers', "Content-Type");
   next();
 });
 
