@@ -5,8 +5,7 @@ var app = express();
 const userRouter = require('./routes/user');
 
 const corsOptions = {
-  origin: '*',
-  credentials: true,
+  origin: '*'
 };
 
 app.use(cors(corsOptions));
