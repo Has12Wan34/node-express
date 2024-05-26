@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
-    // port: process.env.MYSQL_PORT
+    port: process.env.MYSQL_PORT
 });
 
 router.post('/register', [
@@ -33,7 +33,6 @@ router.post('/register', [
         'SELECT * FROM `user` WHERE `email` = ?',
         [email],
         function(err, user) {
-            console.log(err)
             if(user?.length > 0){
                 res.status((409)).json({ message: 'User with this email already exists' });
             }else{
