@@ -8,6 +8,6 @@ app.use(cors())
 app.use(express.json())
 app.use('/api/user', userRouter);
 
-app.listen(5001, function () {
+app.listen(process.env.NODE_PORT, function () {
   console.log('CORS-enabled web server listening on port 80')
 })
