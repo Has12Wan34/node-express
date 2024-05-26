@@ -3,7 +3,7 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const secret = 'full-stack-2024';
 const mysql = require('mysql2');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const { body, validationResult } = require('express-validator');
 const saltRounds = 10;
 require('dotenv').config();
@@ -18,7 +18,7 @@ const connection = mysql.createConnection({
     user: process.env.MYSQL_USER,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
-    // port: process.env.MYSQL_PORT
+    port: process.env.MYSQL_PORT
 });
 
 router.post('/register', [
@@ -33,7 +33,6 @@ router.post('/register', [
         'SELECT * FROM `user` WHERE `email` = ?',
         [email],
         function(err, user) {
-            console.log(err)
             if(user?.length > 0){
                 res.status((409)).json({ message: 'User with this email already exists' });
             }else{
