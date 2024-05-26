@@ -7,9 +7,14 @@
       "config": { "includeFiles": ["dist/**"] }
     }
   ],
-  "headers": {
-    "Access-Control-Allow-Origin": "*"
-  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": {
+        "Access-Control-Allow-Origin": "*"
+      },
+    }
+  ]
   "rewrites": [
     {
       "source": "/(.*)",
