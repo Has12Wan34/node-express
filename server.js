@@ -4,12 +4,14 @@ var app = express();
 
 const userRouter = require('./routes/user');
 
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
-
+// app.use(cors())
+const issue2options = {
+  origin: true,
+  methods: ["POST"],
+  credentials: true,
+  maxAge: 3600
+};
+app.options("/api/user", cors(issue2options));
 app.use(express.json())
 app.use('/api/user', userRouter);
 
