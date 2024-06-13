@@ -6,6 +6,13 @@ var app = express();
 const userRouter = require('./routes/user');
 
 app.use(cors())
+const issue2options = {
+  origin: true,
+  methods: ["POST"],
+  credentials: true,
+  maxAge: 3600
+};
+app.options("/api/user", cors(issue2options));
 app.use(express.json())
 // ตั้งค่า middleware เพื่อให้ Express ใช้งาน static files ในโฟลเดอร์ public
 app.use(express.static(path.join(__dirname, 'public')));
