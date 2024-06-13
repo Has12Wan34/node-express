@@ -124,17 +124,23 @@ router.get('/users', function (req, res, next) {
 router.delete('/users/:id', function (req, res, next) {
     const id = req.params.id;
     connection.query(
-      'DELETE FROM `user` WHERE id = ?',
-      [id],
-      function(err, results) {
-        let query = 'SELECT * FROM user';
-        query += ' ORDER BY id DESC LIMIT 0, 5';
-        connection.query(query,
-          function(err, results, fields) {
-              res.json(results);
-          }
-      );
-      }
+        'SELECT * FROM `user` WHERE `id` = ?',
+        [id],
+        function(err, user) {
+            connection.query(
+                'DELETE FROM `user` WHERE id = ?',
+                [id],
+                function(err, results) {
+                  let query = 'SELECT * FROM user';
+                  query += ' ORDER BY id DESC LIMIT 0, 5';
+                  connection.query(query,
+                    function(err, results, fields) {
+                        res.json(results);
+                    }
+                );
+                }
+            );
+        }
     );
 });
 
