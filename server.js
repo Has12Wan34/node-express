@@ -4,14 +4,18 @@ var cors = require('cors');
 var app = express();
 
 const userRouter = require('./routes/user');
+const travelRouter = require('./routes/travel');
 const customerRouter = require('./routes/customer');
+const auth_google_Router = require('./routes/auth-google');
 
 app.use(cors());
 app.use(express.json());
 // ตั้งค่า middleware เพื่อให้ Express ใช้งาน static files ในโฟลเดอร์ public
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/user', userRouter);
+app.use('/api/travel', travelRouter);
 app.use('/api/customer', customerRouter);
+app.use('/api/auth', auth_google_Router);
 
 app.get('/notfound', (req, res, next) => {
   let options = {

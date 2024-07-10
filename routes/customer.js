@@ -11,7 +11,7 @@ const connection = new Pool({
 });
 
 const getUsers = (request, response) => {
-    connection.query('SELECT * FROM customers ORDER BY id ASC', (error, results) => {
+    connection.query('SELECT * FROM customer ORDER BY id ASC', (error, results) => {
       if (error) {
         throw error
       }
@@ -22,7 +22,7 @@ const getUsers = (request, response) => {
   const getUserById = (request, response) => {
     const id = parseInt(request.params.id)
   
-    connection.query('SELECT * FROM customers WHERE id = $1', [id], (error, results) => {
+    connection.query('SELECT * FROM customer WHERE id = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
@@ -33,7 +33,7 @@ const getUsers = (request, response) => {
   const createUser = (request, response) => {
     const { email, fname, lname } = request.body
   
-    connection.query('INSERT INTO customers (email, fname, lname) VALUES ($1, $2, $3)', [email, fname, lname], (error, results) => {
+    connection.query('INSERT INTO customer (email, fname, lname) VALUES ($1, $2, $3)', [email, fname, lname], (error, results) => {
       if (error) {
         throw error
       }
@@ -46,7 +46,7 @@ const getUsers = (request, response) => {
     const { email, fname, lname } = request.body
   
     connection.query(
-      'UPDATE customers SET email = $1, fname = $2, lname = $3 WHERE id = $4', //email, fname, lname
+      'UPDATE customer SET email = $1, fname = $2, lname = $3 WHERE id = $4', //email, fname, lname
       [email, fname, lname, id],
       (error, results) => {
         if (error) {
@@ -60,7 +60,7 @@ const getUsers = (request, response) => {
   const deleteUser = (request, response) => {
     const id = parseInt(request.params.id)
   
-    connection.query('DELETE FROM customers WHERE id = $1', [id], (error, results) => {
+    connection.query('DELETE FROM customer WHERE id = $1', [id], (error, results) => {
       if (error) {
         throw error
       }
